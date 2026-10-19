@@ -38,7 +38,6 @@ CheckbuttonMedia::CheckbuttonMedia(CheckbuttonMedia::CheckbuttonMediaType media_
     checkbutton_.set_valign(Gtk::Align::START);
     set_hexpand(true);
     set_vexpand(true);
-    set_margin(16);
 
     overlay_.set_child(*widget_);
     overlay_.add_overlay(checkbutton_);
