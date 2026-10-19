@@ -1,0 +1,78 @@
+#ifndef CHECKBUTTON_MEDIA_LIBRARY_H
+#define CHECKBUTTON_MEDIA_LIBRARY_H
+
+#define CHECKBUTTON_MEDIA_VERSION "@PROJECT_VERSION@"
+#include <string>
+#include <gtkmm/widget.h>
+#include <gtkmm/overlay.h>
+#include <gtkmm/aspectframe.h>
+#include <gtkmm/checkbutton.h>
+#include <gtkmm/gestureclick.h>
+
+/**
+ * Class that allow creating a single widget that show media and allows selection
+ * by using checkbutton widget.
+ */
+class CheckbuttonMedia: public Gtk::AspectFrame{
+    public:
+        /**
+         * Enum class to select the type of widget to instante/use.
+         */
+        enum class CheckbuttonMediaType { IMAGE, GIF, MP4 };
+        /**
+         * Constructor which creates all required widgets and configures click event.
+         * @param media_type Type of widget to use according to media selected on path
+         * @param path_to_media Path to media resource
+         */
+        CheckbuttonMedia(CheckbuttonMedia::CheckbuttonMediaType media_type, std::string path_to_media);
+        /**
+         * A string that contains the path to media resource.
+         * @return Return the path to resource being shown by widget
+         */
+        std::string GetResourcePath();
+        /**
+         * Return if current widget is "selected"
+         * @return True if selected, otherwise false
+         */
+        bool IsSelected();
+        /**
+         * Return a string with the current version of widget
+         * @return Current widget version
+         */
+        std::string GetVersion();
+        /**
+         * Convenience method to print the current gif image library version
+         * @return Return current gif image version
+         */
+        std::string GetGIFImageVersion();
+        /**
+         * Method to toggle selection, trigger by click event
+         * @param press Placeholder argument
+         * @param x Placeholder argument
+         * @param y Placeholder argument
+         */
+        void ToggleSelection(int press, double x, double y);
+    private:
+        /**
+         * CheckButton instance
+         */
+        Gtk::CheckButton checkbutton_;
+        /**
+         * Overlay instance
+         */
+        Gtk::Overlay overlay_;
+        /**
+         * Widget instance of selected media type (gifimage, picture, video (mediafile + picture)
+         */
+        Gtk::Widget *widget_;
+        /**
+         * Path to media currently showing
+         */
+        std::string path_to_media_;
+        /**
+         * GestureClick instance for click event
+         */
+        Glib::RefPtr<Gtk::GestureClick> gesture_click_;
+};
+
+#endif // CHECKBUTTON_RESOURCE_LIBRARY_H
