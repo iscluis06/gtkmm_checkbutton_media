@@ -52,6 +52,14 @@ class CheckbuttonMedia: public Gtk::AspectFrame{
          * @param y Placeholder argument
          */
         void ToggleSelection(int press, double x, double y);
+        /**
+         * Disable the gesture click and hides the checkbutton widget
+         */
+        void DisableSelection();
+        /**
+         * Enable the gesture click and show the checkbutton widget
+         */
+        void EnableSelection();
     private:
         /**
          * CheckButton instance

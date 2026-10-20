@@ -60,3 +60,11 @@ bool CheckbuttonMedia::IsSelected() {
 std::string CheckbuttonMedia::GetVersion() {
     return CHECKBUTTON_MEDIA_VERSION;
 }
+void CheckbuttonMedia::DisableSelection() {
+    remove_controller(gesture_click_);
+    checkbutton_.hide();
+}
+void CheckbuttonMedia::EnableSelection() {
+    add_controller(gesture_click_);
+    checkbutton_.hide();
+}
