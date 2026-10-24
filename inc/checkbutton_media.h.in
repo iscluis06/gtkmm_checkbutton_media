@@ -60,6 +60,14 @@ class CheckbuttonMedia: public Gtk::AspectFrame{
          * Enable the gesture click and show the checkbutton widget
          */
         void EnableSelection();
+        /**
+         * Signal method to notify each time the widget changes
+         */
+        sigc::signal<void()> signal_changed();
+        /**
+         * Notifies to all listener when widget changes
+         */
+        void notify_status_changed();
     private:
         /**
          * CheckButton instance
@@ -81,6 +89,10 @@ class CheckbuttonMedia: public Gtk::AspectFrame{
          * GestureClick instance for click event
          */
         Glib::RefPtr<Gtk::GestureClick> gesture_click_;
+        /**
+         * Signal handler
+         */
+        sigc::signal<void()> m_signal_changed_;
 };
 
 #endif // CHECKBUTTON_RESOURCE_LIBRARY_H
